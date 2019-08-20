@@ -1,7 +1,9 @@
 import sys
 
+# strict import of constructors
 from Game import Game
 from Player import Player
+
 from Console import *
 
 # two random letter generators battle it out!
