@@ -34,3 +34,6 @@ class Console:
 	def printGameOverMessageFor(self, player):
 		print("And that's it, \'" + player.name + "\' is out of guesses.")
 		print(player.name + ", Game Over")
+
+	def lickMaBalls():
+		print("LickLickLickMyBalls")
