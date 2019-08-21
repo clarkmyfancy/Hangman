@@ -4,9 +4,9 @@ class Game:
 
 	def __init__(self):
 		try:
-			r = RandomWords()
-			self.secretWord = r.get_random_word(maxLength = 8)
-		except:
+			# r = RandomWords()
+			# self.secretWord = r.get_random_word(maxLength = 8)
+		# except:
 			print("Could not connect to RandomWords library.")
 			print()
 			self.secretWord = input("Enter your mystery word: ")
@@ -17,6 +17,7 @@ class Game:
 			self.gameInPlay = True
 			self.wrongGuessesPerPlayer = 15
 			self.guessedLetters = []
+			self.wrongGuessesLeft = 6
 
 	def revealHyphensAndSpaces(self):
 		i = 0
@@ -27,12 +28,12 @@ class Game:
 			i = self.secretWord.find('-')
 			self.lettersRevealed[i] = True
 
-	def takeTurnForPlayer(self, player):
+	def takeTurnFor(self, player):
 		player.makeGuess()
-		self.checkGuessOfPlayer(player)
+		self.checkGuessOf(player)
 
 
-	def checkGuessOfPlayer(self, player):
+	def checkGuessOf(self, player):
 		guess = player.currentGuess
 		self.guessedLetters.append(guess)
 		isLetterInWord = False
@@ -49,7 +50,7 @@ class Game:
 		return False if (False in self.lettersRevealed) else True
 	 
 
-	def shouldEndForPlayer(self, player):
+	def shouldEndFor(self, player):
 		if self.isPuzzleComplete():
 			return True
 		if player.isOutOfGuesses():
@@ -61,6 +62,12 @@ class Game:
 			if x == True:
 				correctGuesses += 1
 		if correctGuesses == len(self.secretWord):
+			return True
+		else:
+			return False
+
+	def isOutOfGuesses(self):
+		if self.wrongGuessesLeft <= 0:
 			return True
 		else:
 			return False
