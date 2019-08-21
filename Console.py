@@ -27,9 +27,9 @@ class Console:
 	def printGuessFor(self, player):
 		print(str(player.name) + " guessed: " + player.currentGuess)
 
-	def printStatusFor(self, player):
+	def printStatusFor(self, player, game):
 		context = "Incorrect guesses left for "
-		print(context + player.name + ": " + str(player.wrongGuessesLeft))
+		print(context + player.name + ": " + str(game.wrongGuessesLeft))
 
 	def printGameOverMessageFor(self, player):
 		print("And that's it, \'" + player.name + "\' is out of guesses.")
