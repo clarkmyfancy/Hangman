@@ -21,7 +21,7 @@ def main():
 
 	numPlayers = len(players)
 	currentPlayerId = 0
-	while (game.gameInPlay):
+	while (game.isStillPlaying):
 		currentPlayer = players[currentPlayerId]
 
 		console.retrieveGuessFrom(currentPlayer)
@@ -30,12 +30,13 @@ def main():
 		console.printGuessFor(currentPlayer)
 		console.printGuessedLettersFor(game)
 		if not game.didPlayerJustWin(currentPlayer):
-			console.printStatusFor(currentPlayer)
+			console.printStatusFor(currentPlayer, game)
 		console.printScoreboardFor(game)
 
-		if (game.shouldEndFor(currentPlayer)):
-			game.gameInPlay = False
+		if (game.shouldEnd()):
+			game.isStillPlaying = False
 			console.printGameOverMessageFor(currentPlayer)
+
 		currentPlayerId = (currentPlayerId + 1) % numPlayers
 	sys.exit()
 
