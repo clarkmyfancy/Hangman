@@ -14,7 +14,7 @@ class Game:
 		finally:
 			self.lettersRevealed = [False] * len(self.secretWord)
 			self.revealHyphensAndSpaces()
-			self.gameInPlay = True
+			self.isStillPlaying = True
 			self.wrongGuessesPerPlayer = 15
 			self.guessedLetters = []
 			self.wrongGuessesLeft = 6
@@ -44,16 +44,16 @@ class Game:
 					self.lettersRevealed[x] = True
 					isLetterInWord = True
 		if not isLetterInWord:
-			player.wrongGuessesLeft -= 1
+			self.wrongGuessesLeft -= 1
 
 	def didPlayerJustWin(self, player):
 		return False if (False in self.lettersRevealed) else True
 	 
 
-	def shouldEndFor(self, player):
+	def shouldEnd(self):
 		if self.isPuzzleComplete():
 			return True
-		if player.isOutOfGuesses():
+		if self.isOutOfGuesses():
 			return True
 
 	def isPuzzleComplete(self):
