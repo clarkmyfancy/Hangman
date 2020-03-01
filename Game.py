@@ -10,7 +10,6 @@ class Game:
 			print("Could not connect to RandomWords library.")
 			print()
 			self.secretWord = input("Enter your mystery word: ")
-			# self.secretWord =
 		finally:
 			self.lettersRevealed = [False] * len(self.secretWord)
 			self.revealHyphensAndSpaces()
